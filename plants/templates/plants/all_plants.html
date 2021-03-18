@@ -1,12 +1,10 @@
+{% extends 'plants/base.html' %}
+
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-        <meta charset="utf-8">
-        <title>Projects</title>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    </head>
-<body>
+
+{% block content %}
+
+<div class="container">
     <h1>Plants</h1>
     <div class="row">
     {% for plant in plants %}
@@ -15,17 +13,7 @@
                 <img class="card-img-top" src="{% static plant.image %}" alt="image of the plant">
                 <div class="card-body">
                      <h5 class="card-title"> {{ plant.title }}</h5>
-                     <p class="card-text"> {{ plant.botanical_name }}</p>
-                     <p class="card-text"> {{ plant.plant_type }}</p>
-                     <p class="card-text"> {{ plant.mature_size }}</p>
-                     <p class="card-text"> {{ plant.sun_exposure }}</p>
-                     <p class="card-text"> {{ plant.soil_type }} </p>
-                     <p class="card-text"> {{ plant.sun_exposure }} </p>
-                     <p class="card-text"> {{ plant.hardiness_zones }} </p>
-                     <p class="card-text"> {{ plant.native_area }} </p>
-                     <p class="card-text"> {{ plant.toxicity }} </p>
-                     <p class="card-text"> {{ plant.notes }} </p>
-                     <a href="#"
+                     <a href="{% url 'plants:plant_detail' plant.pk %}"
                         class="btn btn-primary">
                             Read More
                      </a>
@@ -34,5 +22,6 @@
         </div>
         {% endfor %}
     </div>
-</body>
-</html>
+</div>
+
+{% endblock %}
